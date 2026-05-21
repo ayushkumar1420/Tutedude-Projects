@@ -8,7 +8,11 @@ nav {
     background-color: rgb(200, 200, 202);
 }
 
-header {
+h1 {
     text-align: center;
-    align-items: center;
+    margin-top: -1px;
+}
+
+box {
+    background-color: red;
 }
