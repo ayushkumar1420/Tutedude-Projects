@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreshFold - Premium Laundry Services</title>
+    <meta name="description" content="Professional laundry services offering quick support, timely delivery, and affordable prices.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Placeholder Public Key - Replace with actual key
+            emailjs.init("YOUR_PUBLIC_KEY");
+        })();
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-shirt"></i> FreshFold
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <div class="user-profile">
+                <span class="user-name">Welcome, Guest</span>
+                <div class="avatar"><i class="fa-regular fa-user"></i></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Premium Laundry Care for Your Beloved Clothes</h1>
+                <p>Experience hassle-free, top-quality laundry services delivered right to your doorstep. We handle the dirty work so you don't have to.</p>
+                <button id="hero-book-btn" class="btn-primary">Book a Service Today</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=800&q=80" alt="Laundry Service">
+                <div class="glass-card float-card-1">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span>Free Pickup</span>
+                </div>
+                <div class="glass-card float-card-2">
+                    <i class="fa-solid fa-leaf"></i>
+                    <span>Eco Friendly</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview Section -->
+    <section class="overview-section">
+        <div class="overview-container">
+            <div class="stat-item">
+                <h2>15+</h2>
+                <p>Laundry Services</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <h2>240+</h2>
+                <p>Happy Customers</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <h2>2+</h2>
+                <p>Years of Experience</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Services Section -->
+    <section id="services" class="booking-section">
+        <div class="booking-container">
+            <!-- Left Div: Services List -->
+            <div class="services-list-container">
+                <div class="section-header">
+                    <h2>Our Services</h2>
+                    <p>Select the services you need</p>
+                </div>
+                <div class="services-grid" id="services-grid">
+                    <!-- Services will be populated here via JS -->
+                </div>
+                <div class="cart-hint">
+                    <i class="fa-solid fa-cart-arrow-down"></i> Add items to the cart
+                </div>
+            </div>
+
+            <!-- Right Div: Cart and Booking Form -->
+            <div class="cart-booking-container">
+                <div class="cart-section glass-panel">
+                    <h3>Your Cart</h3>
+                    <div id="cart-items" class="cart-items">
+                        <p class="empty-cart-msg">No added items</p>
+                    </div>
+                    <div class="cart-total">
+                        <span>Total Amount:</span>
+                        <span id="total-amount">$0</span>
+                    </div>
+                </div>
+
+                <div class="booking-form-section glass-panel">
+                    <h3>Book Now</h3>
+                    <form id="booking-form">
+                        <div class="input-group">
+                            <label for="fullname">Full Name</label>
+                            <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required>
+                        </div>
+                        <button type="submit" class="btn-primary w-100" id="submit-booking">Confirm Booking</button>
+                    </form>
+                    <div id="booking-message" class="hidden">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <p>Thank you For Booking the Service. We will get back to you soon!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quality Description Section -->
+    <section id="about" class="quality-section">
+        <div class="section-header center">
+            <h2>Why Choose Us</h2>
+            <p>What sets our service apart from competitors</p>
+        </div>
+        <div class="quality-grid">
+            <div class="quality-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-crown"></i></div>
+                <h3>Premium Services</h3>
+                <p>We use state-of-the-art equipment and premium detergents to ensure your clothes look and feel their best.</p>
+            </div>
+            <div class="quality-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-headset"></i></div>
+                <h3>Quick Support</h3>
+                <p>Our dedicated customer support team is always ready to assist you with any queries or special requests.</p>
+            </div>
+            <div class="quality-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <h3>Timely Delivery</h3>
+                <p>We value your time. Count on us for prompt pickups and on-time deliveries, every single time.</p>
+            </div>
+            <div class="quality-card">
+                <div class="icon-wrapper"><i class="fa-solid fa-tags"></i></div>
+                <h3>Affordable Prices</h3>
+                <p>Experience luxury laundry care without breaking the bank. Transparent pricing with no hidden fees.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Subscription Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-container glass-panel">
+            <div class="newsletter-content">
+                <h2>Join Our Community</h2>
+                <p>Subscribe to our newsletter to stay informed about the latest updates, promotions, and news related to our laundry service.</p>
+            </div>
+            <form id="newsletter-form" class="newsletter-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <button type="submit" class="btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">
+                    <i class="fa-solid fa-shirt"></i> FreshFold
+                </div>
+                <p>Your trusted partner for all your laundry and dry cleaning needs. We make laundry day a breeze.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Our Services</a></li>
+                    <li><a href="#home">How It Works</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Important Links</h3>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li><i class="fa-solid fa-phone"></i> +1 (800) 123-4567</li>
+                    <li><i class="fa-solid fa-envelope"></i> hello@freshfold.com</li>
+                    <li><i class="fa-solid fa-location-dot"></i> 123 Laundry St, Clean City</li>
+                </ul>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 FreshFold Laundry Services. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
