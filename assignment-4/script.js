@@ -2,10 +2,10 @@
 
 // Available Services Data
 const services = [
-    { id: 1, name: "Wash & Fold", price: 15, icon: "fa-shirt" },
-    { id: 2, name: "Dry Cleaning", price: 25, icon: "fa-user-tie" },
+    { id: 1, name: "Wash & Fold", price: 20, icon: "fa-shirt" },
+    { id: 2, name: "Dry Cleaning", price: 15, icon: "fa-user-tie" },
     { id: 3, name: "Ironing", price: 10, icon: "fa-mattress-pillow" },
-    { id: 4, name: "Stain Removal", price: 20, icon: "fa-droplet" }
+    { id: 4, name: "Stain Removal", price: 15, icon: "fa-droplet" }
 ];
 
 // Cart State
