@@ -99,9 +99,27 @@
     box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
 }
 
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    padding: 80px;
+    gap: 50px;
+}
+
+.h1 {
+    flex: 1;
+    margin: 0;
+}
+
 .img {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.img img {
+    width: 500px;
     max-width: 100%;
     height: auto;
-    display: block;
-
 }
