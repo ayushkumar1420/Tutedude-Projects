@@ -123,3 +123,245 @@
     max-width: 100%;
     height: auto;
 }
+
+/* Booking Message */
+.booking-msg {
+    display: none;
+    color: #28a745;
+    margin-top: 15px;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Quality Description Section */
+.quality-section {
+    padding: 80px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.section-title {
+    margin-bottom: 50px;
+}
+
+.section-title h2 {
+    font-family: sans-serif;
+    font-size: 36px;
+    color: #333;
+}
+
+.section-title p {
+    font-family: sans-serif;
+    color: #666;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.qualities-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.quality-card {
+    flex: 1;
+    min-width: 250px;
+    padding: 40px 20px;
+    background: #f8f8f8;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quality-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    background: #fff;
+}
+
+.quality-card .icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.quality-card h3 {
+    font-family: sans-serif;
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.quality-card p {
+    font-family: sans-serif;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+    background-color: #007bff;
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+}
+
+.newsletter-content h2 {
+    font-family: sans-serif;
+    font-size: 36px;
+    margin-bottom: 15px;
+}
+
+.newsletter-content p {
+    font-family: sans-serif;
+    font-size: 18px;
+    margin-bottom: 40px;
+    opacity: 0.9;
+}
+
+.newsletter-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.newsletter-form input {
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: sans-serif;
+    flex: 1;
+    min-width: 200px;
+}
+
+.newsletter-form input:focus {
+    outline: 2px solid #fff;
+}
+
+.subscribe-btn {
+    padding: 15px 30px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+.subscribe-btn:hover {
+    background-color: #111;
+}
+
+/* Footer */
+.footer {
+    background-color: #f8f8f8;
+    padding: 60px 80px 20px;
+    font-family: sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+}
+
+.footer-logo {
+    flex: 2;
+    min-width: 250px;
+}
+
+.footer-logo h2 {
+    font-size: 30px;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.footer-logo p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.footer-links {
+    flex: 3;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.link-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+.link-group h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.link-group ul {
+    list-style: none;
+    padding: 0;
+}
+
+.link-group ul li {
+    margin-bottom: 12px;
+}
+
+.link-group ul li a {
+    text-decoration: none;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.link-group ul li a:hover {
+    color: #007bff;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+.social-icons a:hover {
+    background-color: #007bff;
+}
+
+.footer-bottom p {
+    color: #666;
+    font-size: 14px;
+}
