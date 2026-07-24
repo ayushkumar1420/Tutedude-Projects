@@ -85,7 +85,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // EmailJS params
             const templateParams = {
-                to_name: name,
+                name: name,
+                email: email,
+                reply_to: email,
                 to_email: email,
                 phone: phone,
                 message: 'Thank you for booking the service. We will get back to you soon!',
@@ -105,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         btn.textContent = 'Add Item ⊕';
                     });
                 }, function(error) {
-                    alert('Failed to send booking email. Please try again later.');
+                    alert('Failed to send booking email. Error: ' + JSON.stringify(error) + '\n\nPlease check your console for more details.');
                     console.log('FAILED...', error);
                 });
         });

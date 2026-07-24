@@ -355,7 +355,6 @@
     border-radius: 50%;
     transition: background-color 0.3s ease;
     font-weight: 600;
-}
     gap: 30px;
     flex-wrap: wrap;
 }
