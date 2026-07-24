@@ -1,32 +1,129 @@
 // Initialize EmailJS (Replace 'YOUR_PUBLIC_KEY' with actual public key)
 (function() {
-    emailjs.init("service_6f4zygd");
+    // emailjs.init("YOUR_PUBLIC_KEY");
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scrolling to services section
     const bookBtn = document.getElementById('book-btn');
-    const bookingMsg = document.getElementById('booking-msg');
-
     if (bookBtn) {
-        bookBtn.addEventListener('click', function() {
-            // Display the success message
-            bookingMsg.style.display = 'block';
+        bookBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const section = document.getElementById('services-booking-section');
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+
+    // Cart Logic
+    const cart = [];
+    const cartBody = document.getElementById('cart-body');
+    const totalAmountEl = document.getElementById('total-amount');
+    const actionBtns = document.querySelectorAll('.action-btn');
+    
+    function updateCartUI() {
+        // Clear cart body
+        cartBody.innerHTML = '';
+        let total = 0;
+
+        cart.forEach((item, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${item.name}</td>
+                <td>₹${item.price.toFixed(2)}</td>
+            `;
+            cartBody.appendChild(tr);
+            total += item.price;
+        });
+
+        totalAmountEl.textContent = `₹${total.toFixed(2)}`;
+    }
+
+    actionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            const name = this.getAttribute('data-name');
+            const price = parseFloat(this.getAttribute('data-price'));
+
+            // Check if item is already in cart
+            const index = cart.findIndex(item => item.id === id);
+
+            if (index > -1) {
+                // Remove item
+                cart.splice(index, 1);
+                this.classList.remove('remove-btn');
+                this.classList.add('add-btn');
+                this.textContent = 'Add Item ⊕';
+            } else {
+                // Add item
+                cart.push({ id, name, price });
+                this.classList.remove('add-btn');
+                this.classList.add('remove-btn');
+                this.textContent = 'Remove Item ⊖';
+            }
+
+            updateCartUI();
+        });
+    });
+
+    // Book Form Submission
+    const bookForm = document.getElementById('book-form');
+    if (bookForm) {
+        bookForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Example of how to send email using EmailJS
-            // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with actual IDs
+            const name = document.getElementById('b-name').value;
+            const email = document.getElementById('b-email').value;
+            const phone = document.getElementById('b-phone').value;
+
+            if (cart.length === 0) {
+                alert("Please add at least one service to your cart before booking.");
+                return;
+            }
+
+            // Example EmailJS params
             const templateParams = {
-                message: 'Thank you For Booking the Service We will get back to you soon!'
+                to_name: name,
+                to_email: email,
+                phone: phone,
+                message: 'Thank you for booking the service. We will get back to you soon!',
+                total_amount: totalAmountEl.textContent
             };
 
             // Uncomment the following lines when you have valid EmailJS credentials
-            emailjs.send('service_6f4zygd', 'template_gjiyl7o', templateParams)
+            /*
+            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
                 .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Booking successful! Confirmation email sent.');
+                    bookForm.reset();
+                    // Reset cart
+                    cart.length = 0;
+                    updateCartUI();
+                    actionBtns.forEach(btn => {
+                        btn.classList.remove('remove-btn');
+                        btn.classList.add('add-btn');
+                        btn.textContent = 'Add Item ⊕';
+                    });
                 }, function(error) {
+                    alert('Failed to send booking email. Please try again later.');
                     console.log('FAILED...', error);
                 });
+            */
             
-            console.log("Email confirmation would be sent here via email.js");
+            // Simulation for assignment purposes
+            console.log("EmailJS template params:", templateParams);
+            alert(`Booking successful! Confirmation email would be sent to ${email} via EmailJS.`);
+            
+            bookForm.reset();
+            cart.length = 0;
+            updateCartUI();
+            actionBtns.forEach(btn => {
+                btn.classList.remove('remove-btn');
+                btn.classList.add('add-btn');
+                btn.textContent = 'Add Item ⊕';
+            });
         });
     }
 

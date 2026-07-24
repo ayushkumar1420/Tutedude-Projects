@@ -44,6 +44,113 @@
     </div>
 </div>
 
+<section id="services-booking-section" class="services-booking-section">
+    <div class="services-left">
+        <h2>Our Services</h2>
+        <p class="subtitle">Click On The Add To Cart Button To Add The Services To Your Cart</p>
+        
+        <div class="services-list" id="services-list">
+            <div class="service-item">
+                <div class="service-info">
+                    <span class="service-icon">👕</span>
+                    <span class="service-name">Dry Cleaning</span>
+                    <span class="service-price">₹200.00</span>
+                </div>
+                <button class="action-btn add-btn" data-id="1" data-name="Dry Cleaning" data-price="200">Add Item ⊕</button>
+            </div>
+            
+            <div class="service-item">
+                <div class="service-info">
+                    <span class="service-icon">🧺</span>
+                    <span class="service-name">Wash & Fold</span>
+                    <span class="service-price">₹100.00</span>
+                </div>
+                <button class="action-btn add-btn" data-id="2" data-name="Wash & Fold" data-price="100">Add Item ⊕</button>
+            </div>
+
+            <div class="service-item">
+                <div class="service-info">
+                    <span class="service-icon">🧦</span>
+                    <span class="service-name">Ironing</span>
+                    <span class="service-price">₹30.00</span>
+                </div>
+                <button class="action-btn add-btn" data-id="3" data-name="Ironing" data-price="30">Add Item ⊕</button>
+            </div>
+
+            <div class="service-item">
+                <div class="service-info">
+                    <span class="service-icon">🧴</span>
+                    <span class="service-name">Stain Removal</span>
+                    <span class="service-price">₹500.00</span>
+                </div>
+                <button class="action-btn add-btn" data-id="4" data-name="Stain Removal" data-price="500">Add Item ⊕</button>
+            </div>
+
+            <div class="service-item">
+                <div class="service-info">
+                    <span class="service-icon">🧥</span>
+                    <span class="service-name">Leather & Suede Cleaning</span>
+                    <span class="service-price">₹999.00</span>
+                </div>
+                <button class="action-btn add-btn" data-id="5" data-name="Leather & Suede Cleaning" data-price="999">Add Item ⊕</button>
+            </div>
+
+            <div class="service-item">
+                <div class="service-info">
+                    <span class="service-icon">👗</span>
+                    <span class="service-name">Wedding Dress Cleaning</span>
+                    <span class="service-price">₹2800.00</span>
+                </div>
+                <button class="action-btn add-btn" data-id="6" data-name="Wedding Dress Cleaning" data-price="2800">Add Item ⊕</button>
+            </div>
+        </div>
+        <p class="footer-note">ⓘ Add the items to the cart and book now</p>
+    </div>
+    
+    <div class="cart-booking-right">
+        <div class="cart-container">
+            <h3>Added Items</h3>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Service Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-body">
+                    <!-- Cart items injected by JS -->
+                </tbody>
+            </table>
+            <div class="cart-total">
+                <span>Total Amount</span>
+                <span id="total-amount">₹0.00</span>
+            </div>
+        </div>
+        
+        <div class="booking-form-container">
+            <h3>Book Now</h3>
+            <form id="book-form">
+                <div class="form-group full-width">
+                    <label>Full Name</label>
+                    <input type="text" id="b-name" placeholder="John Doe" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email ID</label>
+                        <input type="email" id="b-email" placeholder="mailid@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" id="b-phone" placeholder="0000000000" required>
+                    </div>
+                </div>
+                <button type="submit" class="submit-book-btn">Book now</button>
+            </form>
+        </div>
+    </div>
+</section>
+
 <section class="quality-section">
     <div class="section-title">
         <h2>Why Choose Us?</h2>
