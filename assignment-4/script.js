@@ -1,6 +1,6 @@
-// Initialize EmailJS (Replace 'YOUR_PUBLIC_KEY' with actual public key)
+// Initialize EmailJS
 (function() {
-    // emailjs.init("YOUR_PUBLIC_KEY");
+    emailjs.init("wPJLGMlu4lOZCvBxN");
 })();
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            // Example EmailJS params
+            // EmailJS params
             const templateParams = {
                 to_name: name,
                 to_email: email,
@@ -92,9 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 total_amount: totalAmountEl.textContent
             };
 
-            // Uncomment the following lines when you have valid EmailJS credentials
-            /*
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+            emailjs.send('service_6f4zygd', 'template_vbgax32', templateParams)
                 .then(function(response) {
                     alert('Booking successful! Confirmation email sent.');
                     bookForm.reset();
@@ -110,20 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert('Failed to send booking email. Please try again later.');
                     console.log('FAILED...', error);
                 });
-            */
-            
-            // Simulation for assignment purposes
-            console.log("EmailJS template params:", templateParams);
-            alert(`Booking successful! Confirmation email would be sent to ${email} via EmailJS.`);
-            
-            bookForm.reset();
-            cart.length = 0;
-            updateCartUI();
-            actionBtns.forEach(btn => {
-                btn.classList.remove('remove-btn');
-                btn.classList.add('add-btn');
-                btn.textContent = 'Add Item ⊕';
-            });
         });
     }
 
