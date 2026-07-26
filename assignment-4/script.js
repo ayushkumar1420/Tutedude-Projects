@@ -1,127 +1,152 @@
 // Initialize EmailJS
-(function() {
-    emailjs.init("wPJLGMlu4lOZCvBxN");
-})();
+emailjs.init("wPJLGMlu4lOZCvBxN");
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Smooth scrolling to services section
-    const bookBtn = document.getElementById('book-btn');
-    if (bookBtn) {
-        bookBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            const section = document.getElementById('services-booking-section');
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
+// State
+let cart = [];
+
+// DOM Elements
+const cartBody = document.getElementById('cart-body');
+const totalAmountEl = document.getElementById('total-amount');
+const bookForm = document.getElementById('book-form');
+const newsletterForm = document.getElementById('newsletter-form');
+
+// Smooth scrolling
+document.getElementById('book-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('services-booking-section').scrollIntoView({ behavior: 'smooth' });
+});
+
+// Cart functionality
+function renderCart() {
+    cartBody.innerHTML = '';
+    let total = 0;
+
+    for (let i = 0; i < cart.length; i++) {
+        let item = cart[i];
+        let tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + (i + 1) + '</td>' +
+                       '<td>' + item.name + '</td>' +
+                       '<td>₹' + item.price.toFixed(2) + '</td>';
+        cartBody.appendChild(tr);
+        total += item.price;
     }
 
-    // Cart Logic
-    const cart = [];
-    const cartBody = document.getElementById('cart-body');
-    const totalAmountEl = document.getElementById('total-amount');
-    const actionBtns = document.querySelectorAll('.action-btn');
+    totalAmountEl.textContent = '₹' + total.toFixed(2);
+}
+
+function handleServiceClick(e) {
+    if (!e.target.classList.contains('action-btn')) return;
+
+    let btn = e.target;
+    let id = btn.getAttribute('data-id');
+    let name = btn.getAttribute('data-name');
+    let price = parseFloat(btn.getAttribute('data-price'));
+
+    let itemIndex = cart.findIndex(item => item.id === id);
+
+    if (itemIndex > -1) {
+        cart.splice(itemIndex, 1);
+        btn.classList.remove('remove-btn');
+        btn.classList.add('add-btn');
+        btn.textContent = 'Add Item ⊕';
+    } else {
+        cart.push({ id: id, name: name, price: price });
+        btn.classList.remove('add-btn');
+        btn.classList.add('remove-btn');
+        btn.textContent = 'Remove Item ⊖';
+    }
+
+    renderCart();
+}
+
+document.getElementById('services-list').addEventListener('click', handleServiceClick);
+
+// Validation helpers
+function isValidName(name) {
+    return name.trim().length >= 3;
+}
+
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function isValidPhone(phone) {
+    return /^\d{10}$/.test(phone.replace(/\D/g, ''));
+}
+
+// Booking form
+bookForm.addEventListener('submit', function(e) {
+    e.preventDefault();
     
-    function updateCartUI() {
-        // Clear cart body
-        cartBody.innerHTML = '';
-        let total = 0;
+    let name = document.getElementById('b-name').value;
+    let email = document.getElementById('b-email').value;
+    let phone = document.getElementById('b-phone').value;
 
-        cart.forEach((item, index) => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${item.name}</td>
-                <td>₹${item.price.toFixed(2)}</td>
-            `;
-            cartBody.appendChild(tr);
-            total += item.price;
-        });
-
-        totalAmountEl.textContent = `₹${total.toFixed(2)}`;
+    if (cart.length === 0) {
+        alert("Please add some services to your cart first.");
+        return;
     }
 
-    actionBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const id = this.getAttribute('data-id');
-            const name = this.getAttribute('data-name');
-            const price = parseFloat(this.getAttribute('data-price'));
-
-            // Check if item is already in cart
-            const index = cart.findIndex(item => item.id === id);
-
-            if (index > -1) {
-                // Remove item
-                cart.splice(index, 1);
-                this.classList.remove('remove-btn');
-                this.classList.add('add-btn');
-                this.textContent = 'Add Item ⊕';
-            } else {
-                // Add item
-                cart.push({ id, name, price });
-                this.classList.remove('add-btn');
-                this.classList.add('remove-btn');
-                this.textContent = 'Remove Item ⊖';
-            }
-
-            updateCartUI();
-        });
-    });
-
-    // Book Form Submission
-    const bookForm = document.getElementById('book-form');
-    if (bookForm) {
-        bookForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('b-name').value;
-            const email = document.getElementById('b-email').value;
-            const phone = document.getElementById('b-phone').value;
-
-            if (cart.length === 0) {
-                alert("Please add at least one service to your cart before booking.");
-                return;
-            }
-
-            // EmailJS params
-            const templateParams = {
-                name: name,
-                email: email,
-                reply_to: email,
-                to_email: email,
-                phone: phone,
-                message: 'Thank you for booking the service. We will get back to you soon!',
-                total_amount: totalAmountEl.textContent
-            };
-
-            emailjs.send('service_6f4zygd', 'template_vbgax32', templateParams)
-                .then(function(response) {
-                    alert('Booking successful! Confirmation email sent.');
-                    bookForm.reset();
-                    // Reset cart
-                    cart.length = 0;
-                    updateCartUI();
-                    actionBtns.forEach(btn => {
-                        btn.classList.remove('remove-btn');
-                        btn.classList.add('add-btn');
-                        btn.textContent = 'Add Item ⊕';
-                    });
-                }, function(error) {
-                    alert('Failed to send booking email. Error: ' + JSON.stringify(error) + '\n\nPlease check your console for more details.');
-                    console.log('FAILED...', error);
-                });
-        });
+    if (!isValidName(name)) {
+        alert("Please enter a valid name (at least 3 characters).");
+        return;
     }
 
-    // Newsletter form submission handler
-    const newsletterForm = document.getElementById('newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
+    if (!isValidEmail(email)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+
+    if (!isValidPhone(phone)) {
+        alert("Please enter a valid 10-digit phone number.");
+        return;
+    }
+
+    let params = {
+        name: name,
+        email: email,
+        phone: phone,
+        total_amount: totalAmountEl.textContent
+    };
+
+    let submitBtn = bookForm.querySelector('button');
+    submitBtn.textContent = 'Booking...';
+    submitBtn.disabled = true;
+
+    emailjs.send('service_6f4zygd', 'template_vbgax32', params)
+        .then(function() {
+            alert('Booking successful! Check your email.');
+            bookForm.reset();
+            cart = [];
+            renderCart();
             
-            alert(`Thank you for subscribing, ${name}!`);
-            newsletterForm.reset();
+            // Reset buttons
+            let btns = document.querySelectorAll('.action-btn');
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].classList.remove('remove-btn');
+                btns[i].classList.add('add-btn');
+                btns[i].textContent = 'Add Item ⊕';
+            }
+        })
+        .catch(function(err) {
+            alert('Something went wrong. Please try again.');
+            console.error(err);
+        })
+        .finally(function() {
+            submitBtn.textContent = 'Book now';
+            submitBtn.disabled = false;
         });
+});
+
+// Newsletter
+newsletterForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    if (isValidName(name) && isValidEmail(email)) {
+        alert("Thanks for subscribing, " + name + "!");
+        newsletterForm.reset();
+    } else {
+        alert("Please enter a valid name and email.");
     }
 });
