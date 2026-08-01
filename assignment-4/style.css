@@ -183,6 +183,7 @@
 .quality-card .icon {
     font-size: 40px;
     margin-bottom: 20px;
+    color: #007bff;
 }
 
 .quality-card h3 {
@@ -416,6 +417,7 @@
 
 .service-icon {
     font-size: 24px;
+    color: #007bff;
 }
 
 .service-name {
